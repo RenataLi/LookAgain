@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
+  <title id="title">LookAgain — Learning to revisit visual evidence</title>
+  <desc id="desc">A research project on frozen vision-language models, region ranking, and measured compute. An abstract document illustration shows one highlighted window and a magnified detail; no performance result is depicted.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07131f"/><stop offset="0.58" stop-color="#102338"/><stop offset="1" stop-color="#122e40"/></linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e3b4f"/><stop offset="1" stop-color="#11283b"/></linearGradient>
+    <linearGradient id="light" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#64e2d1"/><stop offset="1" stop-color="#6bcdf3"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#34bba8" stop-opacity=".13"/><stop offset="1" stop-color="#34bba8" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#7cbbd0" stroke-opacity=".065"/></pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="170%" height="170%"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#000b15" flood-opacity=".35"/></filter>
+  </defs>
+  <rect width="1600" height="560" rx="24" fill="url(#bg)"/>
+  <rect width="1600" height="560" rx="24" fill="url(#grid)"/>
+  <ellipse cx="1260" cy="280" rx="410" ry="390" fill="url(#glow)"/>
+  <path d="M88 74H146" stroke="url(#light)" stroke-width="4" stroke-linecap="round"/>
+  <text x="164" y="81" fill="#9bbaca" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="3.1">MULTIMODAL RESEARCH</text>
+  <text x="84" y="241" fill="#f4f8fc" font-family="Segoe UI, Arial, sans-serif" font-size="112" font-weight="700" letter-spacing="-5">Look<tspan fill="#6fe0d2">Again</tspan></text>
+  <text x="89" y="302" fill="#d9e5ee" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="400" letter-spacing="-.5">Learning to revisit visual evidence</text>
+  <rect x="89" y="357" width="636" height="57" rx="28.5" fill="#193246" stroke="#34566a"/>
+  <text x="117" y="394" fill="#d9e9ee" font-family="Segoe UI, Arial, sans-serif" font-size="23" font-weight="500">Frozen VLM <tspan fill="#68dacd">·</tspan> Region ranking <tspan fill="#68dacd">·</tspan> Measured compute</text>
+  <text x="90" y="489" fill="#7698ab" font-family="Segoe UI, Arial, sans-serif" font-size="16" letter-spacing="1.4">REPRODUCIBLE CODE · CONTROLLED EXPERIMENTS</text>
+  <g aria-hidden="true">
+    <path d="M971 93V467M1011 93V467M1051 93V467M1091 93V467M1131 93V467M1171 93V467M1211 93V467M1251 93V467M1291 93V467M1331 93V467M1371 93V467M1411 93V467M1451 93V467" stroke="#78b3c6" stroke-opacity=".05"/>
+    <g transform="translate(1000 98) rotate(-5 142 176)" filter="url(#shadow)">
+      <rect width="280" height="350" rx="18" fill="url(#paper)" stroke="#54798b" stroke-width="1.5"/>
+      <rect x="26" y="28" width="80" height="8" rx="4" fill="#75b3c5"/>
+      <rect x="26" y="55" width="199" height="5" rx="2.5" fill="#426b80"/>
+      <rect x="26" y="70" width="174" height="5" rx="2.5" fill="#426b80"/>
+      <rect x="26" y="101" width="228" height="100" rx="6" fill="#163045" stroke="#416779"/>
+      <path d="M26 126H254M26 151H254M26 176H254M83 101V201M140 101V201M197 101V201" stroke="#426779" stroke-width="1"/>
+      <path d="M37 118H69M94 143H127M151 168H184M207 192H243" stroke="#a2bdc8" stroke-width="3" stroke-linecap="round"/>
+      <rect x="26" y="224" width="224" height="5" rx="2.5" fill="#466d80"/>
+      <rect x="26" y="239" width="190" height="5" rx="2.5" fill="#466d80"/>
+      <rect x="26" y="254" width="215" height="5" rx="2.5" fill="#466d80"/>
+      <rect x="26" y="284" width="224" height="5" rx="2.5" fill="#466d80"/>
+      <rect x="26" y="299" width="169" height="5" rx="2.5" fill="#466d80"/>
+      <rect x="71" y="87" width="138" height="175" rx="5" fill="#54decc" fill-opacity=".06" stroke="#67dace" stroke-opacity=".65" stroke-dasharray="5 6"/>
+      <rect x="139" y="88" width="138" height="175" rx="5" fill="#6ce4d2" fill-opacity=".12" stroke="#7bf0d7" stroke-width="2.5"/>
+      <path d="M139 110V88H161M255 88H277V110M277 241V263H255M161 263H139V241" fill="none" stroke="#a6ffeb" stroke-width="4"/>
+    </g>
+    <path d="M1297 186C1369 186 1338 222 1380 230" fill="none" stroke="#efb766" stroke-width="2" stroke-dasharray="5 7"/>
+    <circle cx="1297" cy="186" r="5" fill="#efb766"/>
+    <g transform="translate(1300 242)" filter="url(#shadow)">
+      <rect width="216" height="208" rx="17" fill="#153447" stroke="#73dccf" stroke-width="2"/>
+      <rect x="20" y="20" width="176" height="119" rx="8" fill="#0d2537"/>
+      <path d="M20 59H196M20 99H196M78 20V139M138 20V139" stroke="#396d7c" stroke-width="1.2"/>
+      <rect x="87" y="74" width="43" height="9" rx="4.5" fill="#7fe0d4"/>
+      <rect x="30" y="34" width="35" height="7" rx="3.5" fill="#567f90"/>
+      <rect x="149" y="115" width="34" height="7" rx="3.5" fill="#567f90"/>
+      <circle cx="28" cy="171" r="4" fill="#efb766"/>
+      <text x="44" y="177" fill="#d9eef2" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing=".6">REVISIT A REGION</text>
+    </g>
+    <rect x="1191" y="79" width="126" height="33" rx="16.5" fill="#173a48" stroke="#49857f"/>
+    <text x="1254" y="101" text-anchor="middle" fill="#85e0d1" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="1">LOOK AGAIN</text>
+  </g>
+</svg>

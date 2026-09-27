@@ -1,0 +1,231 @@
+{
+  "model_id": "Qwen/Qwen3-VL-4B-Instruct",
+  "seed": 20260925,
+  "base_visual_tokens": 1024,
+  "crop_visual_tokens": 1024,
+  "highres_visual_tokens": 4096,
+  "answer_max_tokens": 64,
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "do_sample": false,
+  "short_answer_prefix": "ANSWER:",
+  "stage": "history_context_development",
+  "actions": [
+    "direct",
+    "highres",
+    "repeat",
+    "actual_native_tl",
+    "actual_native_tr",
+    "actual_native_bl",
+    "actual_native_br",
+    "actual_degraded_tl",
+    "actual_degraded_tr",
+    "actual_degraded_bl",
+    "actual_degraded_br",
+    "fresh_native_tl",
+    "fresh_native_tr",
+    "fresh_native_bl",
+    "fresh_native_br",
+    "fresh_degraded_tl",
+    "fresh_degraded_tr",
+    "fresh_degraded_bl",
+    "fresh_degraded_br",
+    "placeholder_native_tl",
+    "placeholder_native_tr",
+    "placeholder_native_bl",
+    "placeholder_native_br",
+    "placeholder_degraded_tl",
+    "placeholder_degraded_tr",
+    "placeholder_degraded_bl",
+    "placeholder_degraded_br"
+  ],
+  "prompts": {
+    "answer": "Answer by copying the relevant single text span from the page, including any units. Do not explain.",
+    "crop": "The additional image is an enlarged region of the original image. Reconsider your answer using the available visual evidence. Answer by copying the relevant single text span from the page, including any units. Do not explain.",
+    "repeat": "The additional image repeats the original image. Reconsider your answer using the available visual evidence. Answer by copying the relevant single text span from the page, including any units. Do not explain.",
+    "fresh_context": "The first image is the full page. The second image is an enlarged region of the first image.",
+    "placeholder": "I have viewed the page."
+  },
+  "protocol": {
+    "version": "4.0",
+    "rules_locked_at_utc": "2026-09-25T21:28:45Z",
+    "document": "docs/history_context_protocol.md",
+    "third_party_preregistration": false,
+    "main_examples": 100,
+    "smoke_examples": 2,
+    "main_manifest_sha256": "757c3a4d024ac726f701c8732424e3457bfb292d224f67e2de22201ac641adc5",
+    "smoke_manifest_sha256": "ac4f35d9edf4c6e6a7b70225668fc89172a618f3eaecaa661009269c2c109564",
+    "model_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+    "source_selection_metadata_sha256": "df16127bd0f7adf69db8d2f1ddaff95875f8c116877cd8bab816307e6ff69401",
+    "source_audit_locked_at_utc": "2026-09-25T20:40:57Z",
+    "v3_inference_code_sha256": "515dc6941bfe514a3beffba157d8b31a54ae061525447a1653c1dc57bcda57cd",
+    "v3_run_fingerprint": "e1dc970611eb3fa83851fd0b5a50f946bde4b6282392a5cbcb61667a6f8e2a55",
+    "v3_run_sha256": "6e0b7ab5c5851457b575260eef0e8eb7c03ac7b262f406de8c308f1db9bc8f7a",
+    "v3_records_sha256": "f55389457f0bf109326686ab629ffd351be6290d592242cc9e8e7c346d1e2805",
+    "v3_completion_sha256": "d054c3d3aef9fd70501b8fc860451fdd6c809d987544633169d2854c6cb216e9",
+    "v3_source_package_sha256": "b897b6bf0e13c1045b1f1c77a732978ce91007ea87c513f2828547b3424003be",
+    "v3_reference_run": "reports/native100",
+    "source_panel_role": "reused_development_panel_after_observed_v3_outcomes",
+    "inference_code_sha256": "c63cf16a860dc2b016454c183a63d031aaa98f55201100ab60c63b296d0d21f6",
+    "inference_execution_locked_at_utc": "2026-09-25T21:33:32.325365+00:00",
+    "main_execution_locked_at_utc": "2026-09-25T21:33:32.325365+00:00",
+    "execution_lock_requirement": "Bind completed v4 inference code and execution lock before any v4 smoke/main inference; null pins are not runnable.",
+    "generation_calls_per_page": 27,
+    "expected_main_calls": 2700,
+    "expected_smoke_calls": 54,
+    "document_sha256": "0f86defbe8b72e32da1cc5ef3a74432f15279627b044b17bc509d5c51af6fc04"
+  },
+  "analysis": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20260925,
+    "bootstrap_unit": "original_source_report",
+    "primary_metric": "conservative_text_em",
+    "secondary_metrics": [
+      "official_em",
+      "official_f1",
+      "anls"
+    ],
+    "primary_contrast": "placeholder_minus_actual_detail_interaction",
+    "primary_contrast_formula": "mean_report[(mean_region(placeholder_native-placeholder_degraded))-(mean_region(actual_native-actual_degraded))]",
+    "secondary_interactions": [
+      {
+        "name": "fresh_minus_actual_detail_interaction",
+        "positive_history": "fresh",
+        "negative_history": "actual"
+      },
+      {
+        "name": "fresh_minus_placeholder_detail_interaction",
+        "positive_history": "fresh",
+        "negative_history": "placeholder"
+      }
+    ],
+    "absolute_detail_effects": [
+      "actual",
+      "fresh",
+      "placeholder"
+    ],
+    "secondary_absolute_comparisons": [
+      "each_history_fidelity_minus_direct",
+      "each_history_fidelity_minus_highres",
+      "repeat_minus_direct"
+    ],
+    "condition_score": "Mean of four regions within each report, then equal-report mean; expected uniformly selected single region.",
+    "confidence_interval": "95% paired percentile bootstrap; exploratory, unadjusted; all actions retained in each resampled report.",
+    "near_zero_variance_caveat": "Collapsed/narrow empirical intervals do not establish population equivalence, absence of rare benefits, or a mechanistic zero; observed development-panel distribution only.",
+    "practical_delta": 0.02,
+    "candidate_gate": {
+      "histories": [
+        "actual",
+        "fresh",
+        "placeholder"
+      ],
+      "metric": "conservative_text_em",
+      "detail_effect_threshold": 0.02,
+      "conditions": [
+        "absolute_native_minus_degraded_mean >= 0.02",
+        "absolute_native_minus_degraded_ci95_lower > 0",
+        "native_mean >= fresh_direct_mean"
+      ],
+      "usage": "Only motivates validation on untouched original reports; no automatic controller training or held-out claim.",
+      "primary_interaction_remains_primary": true,
+      "automatic_controller_training": false,
+      "checks_exploratory_unadjusted": true
+    },
+    "source_quality_sensitivity": "Exclude only frozen label_error/ambiguous main examples, retain mapping_only; unchanged all100 primary,94 secondary.",
+    "quality_mask_sha256": "a621e6124f866ec4a1d0b882dc03cd5a10fe3bcfd8e567574c65934c76f9db90",
+    "expected_secondary_sources": 94,
+    "primary_sources_unchanged": 100,
+    "agreement_diagnostics": [
+      "raw_answer_vs_direct",
+      "normalized_answer_vs_direct",
+      "cross_history_same_fidelity_region"
+    ],
+    "v3_replication": "Fresh direct/highres/repeat/actual versus archived v3; descriptive only, no pooling or replacement.",
+    "oracle": {
+      "role": "Diagnostic privileged upper bound; not deployed policy performance.",
+      "per_history_fidelity_candidates": "direct plus the four regional responses",
+      "candidate_count": 5,
+      "include_highres": false,
+      "include_repeat": false,
+      "repeat_treatment": "Separate actual-history control",
+      "comparisons": [
+        "matched_native_minus_degraded_within_each_history",
+        "descriptive_gain_beyond_highres"
+      ],
+      "metric_specific_maxima": true,
+      "selection_cost_warning": "Reference-guided choice omits learned selector/search costs."
+    }
+  },
+  "execution": {
+    "automatic_retries": 0,
+    "warmup_calls": 6,
+    "warmup_max_new_tokens": 2,
+    "warmup_description": "Synthetic landscape/square/portrait; direct and actual_native_tl; nonexhaustive shape/history coverage.",
+    "action_order": "direct first; per-example SHA256-seeded shuffle of twenty-six alternatives",
+    "action_shuffle_seed": "int(sha256(f'{seed}:{example_id}'.encode()).hexdigest()[:16], 16)",
+    "action_shuffle_algorithm": "random.Random(action_shuffle_seed).shuffle(alternatives)",
+    "resume": "identical fingerprint only",
+    "pdf_rendering_timed_separately": true,
+    "cross_call_kv_reuse": false,
+    "main_outcome_inspection": "Only after all 2700 declared records complete.",
+    "hash_bindings": [
+      "full messages",
+      "ordered RGB images",
+      "observed direct response separately",
+      "assistant history content actually supplied"
+    ]
+  },
+  "histories": [
+    "actual",
+    "fresh",
+    "placeholder"
+  ],
+  "fidelities": [
+    "native",
+    "degraded"
+  ],
+  "regions": [
+    "tl",
+    "tr",
+    "bl",
+    "br"
+  ],
+  "history_contract": {
+    "actual": "Exact v3 system and user messages; intermediate assistant is exact raw fresh direct response.",
+    "fresh": "One user message: overview image, regional image, then fresh_context + newline + question + newline + answer instruction. No earlier assistant turn.",
+    "placeholder": "Exact actual system/user messages; intermediate assistant replaced only with prompts.placeholder.",
+    "generation": "Every action uses the same ANSWER: assistant generation prefill.",
+    "repeat_history": "actual",
+    "actual_inputs_match_v3_for_same_initial_answer": true,
+    "native_degraded_same_messages_within_history": true,
+    "identical_view_bytes_across_histories_within_source_region_fidelity": true,
+    "cross_history_token_match_claim": false,
+    "previous_branch_output_reuse": false
+  },
+  "cost_scenarios": {
+    "primary_decision_state": {
+      "label": "Two-stage decision-state policy",
+      "direct": "standalone",
+      "highres": "standalone",
+      "repeat": "direct + repeat",
+      "actual": "direct + branch",
+      "fresh": "direct + branch",
+      "placeholder": "direct + branch",
+      "followup_memory": "max(direct, branch)"
+    },
+    "secondary_standalone": {
+      "label": "Standalone fixed-view interface; not an adaptive controller",
+      "direct": "standalone",
+      "highres": "standalone",
+      "repeat": "direct + repeat",
+      "actual": "direct + branch",
+      "fresh": "branch only",
+      "placeholder": "branch only",
+      "followup_memory": "max(direct, branch) only when direct is required; otherwise branch"
+    },
+    "region_average": "Mean over four one-region policies, not sum of four branches.",
+    "equal_compute_claim": false,
+    "all_outliers_retained": true,
+    "pdf_rendering_timed_separately": true
+  }
+}

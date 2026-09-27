@@ -1,0 +1,66 @@
+{
+  "model_id": "Qwen/Qwen3-VL-4B-Instruct",
+  "seed": 20260925,
+  "base_visual_tokens": 1024,
+  "crop_visual_tokens": 1024,
+  "highres_visual_tokens": 4096,
+  "answer_max_tokens": 64,
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "do_sample": false,
+  "short_answer_prefix": "ANSWER:",
+  "stage": "native_detail_development",
+  "actions": [
+    "direct",
+    "highres",
+    "repeat",
+    "native_tl",
+    "native_tr",
+    "native_bl",
+    "native_br",
+    "degraded_tl",
+    "degraded_tr",
+    "degraded_bl",
+    "degraded_br"
+  ],
+  "prompts": {
+    "answer": "Answer by copying the relevant single text span from the page, including any units. Do not explain.",
+    "crop": "The additional image is an enlarged region of the original image. Reconsider your answer using the available visual evidence. Answer by copying the relevant single text span from the page, including any units. Do not explain.",
+    "repeat": "The additional image repeats the original image. Reconsider your answer using the available visual evidence. Answer by copying the relevant single text span from the page, including any units. Do not explain."
+  },
+  "protocol": {
+    "version": "3.0",
+    "rules_locked_at_utc": "2026-09-25T20:36:42+00:00",
+    "document": "docs/native_detail_protocol.md",
+    "third_party_preregistration": false,
+    "main_examples": 100,
+    "smoke_examples": 2,
+    "main_manifest_sha256": "757c3a4d024ac726f701c8732424e3457bfb292d224f67e2de22201ac641adc5",
+    "smoke_manifest_sha256": "ac4f35d9edf4c6e6a7b70225668fc89172a618f3eaecaa661009269c2c109564",
+    "model_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+    "inference_code_sha256": "515dc6941bfe514a3beffba157d8b31a54ae061525447a1653c1dc57bcda57cd",
+    "source_selection_metadata_sha256": "df16127bd0f7adf69db8d2f1ddaff95875f8c116877cd8bab816307e6ff69401",
+    "generation_calls_per_page": 11,
+    "expected_main_calls": 1100,
+    "source_audit_locked_at_utc": "2026-09-25T20:40:57Z",
+    "main_execution_locked_at_utc": "2026-09-25T20:41:23+00:00",
+    "document_sha256": "510839c24a24a0d5b7d666c0b20af30a77a11046cc1bf3560b64cc8e7c059db9"
+  },
+  "analysis": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20260925,
+    "primary_metric": "conservative_text_em",
+    "practical_delta": 0.02,
+    "primary_contrast": "native_minus_degraded",
+    "source_quality_sensitivity": "Exclude only frozen label_error/ambiguous main examples, retain mapping_only; unchanged all100 primary,94 secondary.",
+    "quality_mask_sha256": "a621e6124f866ec4a1d0b882dc03cd5a10fe3bcfd8e567574c65934c76f9db90"
+  },
+  "execution": {
+    "automatic_retries": 0,
+    "warmup_calls": 6,
+    "warmup_max_new_tokens": 2,
+    "action_order": "direct first; per-example SHA256-seeded shuffle of ten alternatives",
+    "resume": "identical fingerprint only",
+    "pdf_rendering_timed_separately": true
+  }
+}

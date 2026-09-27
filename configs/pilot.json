@@ -1,0 +1,15 @@
+{
+  "model_id": "Qwen/Qwen3-VL-4B-Instruct",
+  "seed": 20260925,
+  "base_visual_tokens": 1024,
+  "highres_visual_tokens": 4096,
+  "crop_visual_tokens": 1024,
+  "answer_max_tokens": 32,
+  "think_max_tokens": 128,
+  "actions": ["direct", "highres", "recheck", "think", "crop_tl", "crop_tr", "crop_bl", "crop_br"],
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "do_sample": false,
+  "short_answer_prefix": "ANSWER:",
+  "stage": "development_diagnostic_pilot"
+}

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=78"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lookagain-research"
+version = "0.1.0"
+description = "Measuring the marginal value of visual re-observation in frozen VLMs"
+requires-python = ">=3.11"
+authors = [{name = "RenataLi"}]
+readme = "README.md"
+license = "MIT"
+keywords = ["computer-vision", "vision-language-models", "visual-reasoning", "region-ranking", "reproducible-research"]
+dependencies = ["torch>=2.8,<2.9", "torchvision>=0.23,<0.24", "transformers==4.57.6", "accelerate>=1.10,<2", "datasets>=4,<5", "huggingface-hub>=0.34,<1", "Pillow>=11", "numpy>=2,<3", "matplotlib>=3.9"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+report = ["reportlab>=4,<5", "pypdf>=5,<7"]
+
+[project.urls]
+Repository = "https://github.com/RenataLi/LookAgain"
+Documentation = "https://github.com/RenataLi/LookAgain/tree/main/docs"
+Issues = "https://github.com/RenataLi/LookAgain/issues"
+
+[project.scripts]
+lookagain = "lookagain.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

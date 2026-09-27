@@ -1,0 +1,56 @@
+{
+  "stage": "dude_source_preparation",
+  "model_id": "Qwen/Qwen3-VL-4B-Instruct",
+  "model_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+  "seed": 20260927,
+  "overview_budgets": [256],
+  "crop_visual_tokens": 1024,
+  "highres_visual_tokens": 4096,
+  "answer_max_tokens": 64,
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "do_sample": false,
+  "short_answer_prefix": "ANSWER:",
+  "actions": ["direct_256", "native_256", "degraded_256", "highres"],
+  "prompts": {
+    "answer": "Answer by copying the relevant single text span from the page, including any units. Do not explain.",
+    "fresh_context": "The first image is the full page. The second image is an enlarged region of the first image."
+  },
+  "source_plan": {
+    "dataset": "DUDE",
+    "split": "train",
+    "render_dpi": 200,
+    "main_target_source_clusters": 660,
+    "additional_engineering_source_reservations": 10,
+    "known_probe_doc_id": "0017b64bd017f06db47e56a6a113e22e",
+    "answer_page_privileged": true,
+    "roi_privileged": true,
+    "canonical_reference_immutable": true,
+    "all_final_sources_require_semantic_review": true
+  },
+  "analysis_plan": {
+    "primary_metric": "source_validated_casefold_whitespace_exact_match",
+    "secondary_metric": "pinned_official_DUDE_scalar_ANLS",
+    "primary_contrast": "native_256_minus_degraded_256",
+    "primary_test": "two-sided exact McNemar, positive observed direction",
+    "alpha": 0.05,
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20260927,
+    "bootstrap_unit": "source_cluster",
+    "bootstrap_interval": "paired percentile 95%",
+    "planning_delta": 0.05,
+    "planning_total_discordance": 0.20,
+    "target_power_scenario": 0.80,
+    "quantitative_advancement": [
+      "mean(native_256-degraded_256)>=0.02",
+      "exact_two_sided_p<=0.05",
+      "paired_ci95_lower>0",
+      "mean(native_256)>=mean(direct_256)"
+    ],
+    "automatic_controller_training": false
+  },
+  "protocol_document": "docs/dude_replication_protocol.md",
+  "execution_locked": false,
+  "main_generation_authorized_by_this_config": false,
+  "execution_lock_requirement": "A separately reviewed runner and analyzer, all source audits, final 660-source manifest, image/config/protocol/code/model bindings and explicit timestamp are required before main generation. This preparation configuration is not an inference lock."
+}

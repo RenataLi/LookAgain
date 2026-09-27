@@ -1,0 +1,18 @@
+# Preserve exact bytes unless a text rule below applies.
+* -text
+# Keep source and presentation text readable with stable LF line endings.
+*.py text eol=lf
+*.ps1 text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.cff text eol=lf
+*.svg text eol=lf
+# Keep numerical JSON and JSONL files byte-identical across platforms.
+reports/**/*.json -text
+reports/**/*.jsonl -text
+*.png binary
+*.pdf binary
+# Retain the original CRLF line endings of the pinned metric implementation.
+experiments/tatdqa_metrics.py -text
+configs/*.json -text

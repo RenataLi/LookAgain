@@ -1,0 +1,153 @@
+{
+  "model_id": "Qwen/Qwen3-VL-4B-Instruct",
+  "seed": 20260926,
+  "stage": "evidence_availability_development",
+  "overview_budgets": [
+    256,
+    512,
+    1024
+  ],
+  "crop_visual_tokens": 1024,
+  "highres_visual_tokens": 4096,
+  "answer_max_tokens": 64,
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "do_sample": false,
+  "short_answer_prefix": "ANSWER:",
+  "actions": [
+    "direct_256",
+    "native_256",
+    "degraded_256",
+    "direct_512",
+    "native_512",
+    "degraded_512",
+    "direct_1024",
+    "native_1024",
+    "degraded_1024",
+    "highres"
+  ],
+  "prompts": {
+    "answer": "Answer by copying the relevant single text span from the page, including any units. Do not explain.",
+    "fresh_context": "The first image is the full page. The second image is an enlarged region of the first image."
+  },
+  "protocol": {
+    "version": "5.0",
+    "document": "docs/evidence_availability_protocol.md",
+    "document_sha256": "db7bf53219862f9132701199fa12b067faa24ee5557c16bb948876502a79b885",
+    "rules_locked_at_utc": "2026-09-26T04:39:50.506907+00:00",
+    "main_execution_locked_at_utc": "2026-09-26T04:39:50.506907+00:00",
+    "inference_code_sha256": "696674994e06a4b2812a9bd2d2b8ebfd3c272d44114200a9064f4559e6841961",
+    "third_party_preregistration": false,
+    "main_examples": 85,
+    "smoke_examples": 1,
+    "generation_calls_per_page": 10,
+    "expected_main_calls": 850,
+    "expected_smoke_calls": 10,
+    "main_manifest_sha256": "c53fa5cf81a6724c04aa8ca673d8fbc8af9523df2c571876b561459daa7833e7",
+    "smoke_manifest_sha256": "7167c0eeed5d6df501c6ddcf29bf70992f9985cec2dde3d75880f925089877cf",
+    "preparation_metadata_sha256": "771bf6bfe23ae58d5f5d7eeebdee29d4a4db39aa10c220a6de1fde11f1696a3b",
+    "roi_audit_sha256": "86bc500ceece32c922b13663675ad22720eb63a60a018faa2153dff9d4b7aea3",
+    "preparation_code_sha256": "213dc44f9b4bd45c8efe48e5ed9e68919ac3555d61e14e734c1093cef15f050f",
+    "model_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+    "source_main_manifest_sha256": "757c3a4d024ac726f701c8732424e3457bfb292d224f67e2de22201ac641adc5",
+    "source_smoke_manifest_sha256": "ac4f35d9edf4c6e6a7b70225668fc89172a618f3eaecaa661009269c2c109564",
+    "source_selection_metadata_sha256": "df16127bd0f7adf69db8d2f1ddaff95875f8c116877cd8bab816307e6ff69401",
+    "source_quality_mask_sha256": "a621e6124f866ec4a1d0b882dc03cd5a10fe3bcfd8e567574c65934c76f9db90",
+    "dataset_annotation_sha256": "3025b4ca9c3c87f5ecd2c504371e1ee92929ef1f31d8a3ac38bc3a5376582fab",
+    "dataset_document_archive_sha256": "412dde804ec9d5888b888a9d7179f2157bc2679b92379f9804e6f2062e7237d9",
+    "v4_inference_code_sha256": "c63cf16a860dc2b016454c183a63d031aaa98f55201100ab60c63b296d0d21f6",
+    "base_source_sha256": "b897b6bf0e13c1045b1f1c77a732978ce91007ea87c513f2828547b3424003be",
+    "source_panel_role": "Known development reports after observed v3/v4 results; prior quality filter plus reference-guided ROI eligibility; not held out.",
+    "execution_lock_requirement": "Fill document/inference hashes and both timestamps after final review, before any v5 smoke or main inference."
+  },
+  "roi": {
+    "localizer": "reference_annotation_privileged",
+    "label_privileged_localizer": true,
+    "prior_source_quality_categories": [
+      "none",
+      "mapping_only"
+    ],
+    "require_selected_text_reference_equality": "casefold and collapse whitespace",
+    "deduplicate_mapping_triples": true,
+    "reject_boundary_fragments": "Any omitted alphanumeric character or hyphen variant; punctuation-only fragments allowed.",
+    "coordinates": "OCR CropBox top-left to source MediaBox render top-left, with recorded scales and offsets",
+    "rotation": 0,
+    "user_unit": 1,
+    "cropbox_must_be_contained_in_mediabox": true,
+    "ocr_aspect_tolerance": "abs(ow*ch-oh*cw)<=cw+ch; at most one OCR raster-pixel rounding error per axis",
+    "context_margin_median_word_heights": 2,
+    "minimum_source_window_side_pixels": 256,
+    "maximum_page_area_fraction": 0.25,
+    "processor_min_pixels": 65536,
+    "source_upsampling": false,
+    "blank_padding": false,
+    "rescue_fallback": false,
+    "native_pixels_identical_across_budgets": true,
+    "degraded": "BICUBIC resize of projected floating-point source ROI from the corresponding overview only, matched native output size"
+  },
+  "analysis": {
+    "primary_metric": "official_em",
+    "secondary_metrics": [
+      "conservative_text_em",
+      "official_f1",
+      "anls"
+    ],
+    "metric_change_from_v4": "Prospective primary switch from conservative text EM to pinned official empty-scale single-span EM; earlier primary findings unchanged.",
+    "primary_contrast": "native_256_minus_degraded_256",
+    "secondary_interaction": "detail_256_minus_detail_1024",
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20260926,
+    "bootstrap_unit": "original_source_report",
+    "confidence_interval": "95% paired percentile; exploratory/unadjusted; all ten actions resampled together",
+    "primary_sources": 85,
+    "source_quality_sensitivity": "None: frozen prior94 quality filter is applied before ROI eligibility; primary is all85 eligible reports.",
+    "candidate_gate": {
+      "metric": "official_em",
+      "budget": 256,
+      "detail_effect_threshold": 0.02,
+      "conditions": [
+        "mean(native_256-degraded_256)>=0.02",
+        "paired_ci95_lower>0",
+        "mean(native_256)>=mean(direct_256)"
+      ],
+      "automatic_controller_training": false,
+      "usage": "Only motivates untouched-data validation with a nonprivileged selector; semantic audit also required."
+    },
+    "semantic_audit": {
+      "selection": "All native256/degraded256 parsed-answer changes; additionally differing raw responses when either parse is invalid. Include official both-correct and both-wrong pairs.",
+      "blinding_seed": 20260926,
+      "display": "Original full source page, question, unchanged reference, complete raw A/B responses; hide condition identities and scores until judgments are locked.",
+      "categories": [
+        "content_difference",
+        "formatting_only",
+        "both_substantively_valid",
+        "both_substantively_wrong",
+        "ambiguous_uncertain"
+      ],
+      "minimum_distinct_native_only_content_repairs": 3,
+      "require_positive_net_content_repairs": true,
+      "role": "Descriptive condition-blinded qualitative check, separate from independent expert validation, formal statistical testing and score revision"
+    },
+    "near_zero_variance_caveat": "Narrow/collapsed empirical intervals do not establish population equivalence or absence of rare unseen effects.",
+    "upstream_metric_limitation": "Official normalization can erase formatting, units/sign distinctions; raw content audit required. No gold scale injected into predictions."
+  },
+  "execution": {
+    "automatic_retries": 0,
+    "warmup_calls": 6,
+    "warmup_max_new_tokens": 2,
+    "warmup_description": "Synthetic landscape/square/portrait direct_256 and native_256; nonexhaustive shapes",
+    "action_order": "Per-example seeded shuffle of all ten independent actions",
+    "action_shuffle_seed": "int(sha256(f'{seed}:{example_id}'.encode()).hexdigest()[:16],16)",
+    "previous_answer_in_prompt": false,
+    "cross_call_kv_reuse": false,
+    "resume": "identical fingerprint only",
+    "main_outcome_inspection": "Only after all850 declared records complete"
+  },
+  "cost_scenarios": {
+    "primary_standalone": "Each action is one fresh VLM invocation; no direct answer required by regional input.",
+    "secondary_decision_state": "Regional branch plus matching direct_b; peak memory max of both. Direct and highres standalone.",
+    "localization_cost": "Reference-associated ROI is privileged and unavailable to a deployed selector; annotation/preparation costs excluded from VLM-call latency and disclosed separately.",
+    "all_outliers_retained": true,
+    "equal_compute_claim": false
+  }
+}
